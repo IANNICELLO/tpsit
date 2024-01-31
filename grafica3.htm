@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabella 10x10</title>
-  <style>
-    table {
-      border-collapse: collapse;
-    }
-    td {
-      width: 20px;
-      height: 20px;
-      border: 1px solid black;
-    }
-    .gray {
-      background-color: lightgray;
-    }
-    .darkgray {
-      background-color: darkgray;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella 10x10</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            width: 20px;
+            height: 20px;
+            border: 1px solid black;
+        }
+        .gray {
+            background-color: lightgray;
+        }
+        .darkgray {
+            background-color: darkgray;
+        }
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    </style>
 </head>
 <body>
-  <table>
-    <script>
-      for (let i = 1; i <= 100; i++) {
-        document.write('<td class="' + (i % 2 === 0 ? 'gray' : 'darkgray') + '"><img src="' + (i % 2 === 0 ? 'pizza.jpg.jpg' : 'bomba.jpg.jpg') + '" alt="image" / onclick="conta()"></td>');
-        if (i % 10 === 0) {
-          document.write('<tr></tr>');
-        }
-      }
-    </script>
-  </table>
+    <table>
+        <script>
+            let pizzaCount = 0;
+            let bombaCount = 0;
+
+            for (let i = 1; i <= 100; i++) {
+                let imgSrc = i % 2 === 0 ? 'pizza.jpg' : 'bomba.jpg';
+                let className = i % 2 === 0 ? 'gray' : 'darkgray';
+
+                document.write('<td class="' + className + '"><img src="' + imgSrc + '" alt="image" onclick="' + (i % 2 === 0 ? 'incrementPizzaCount' : 'incrementBombaCount') + '()"></td>');
+                if (i % 10 === 0) {
+                    document.write('<tr></tr>');
+                }
+            }
+
+            function incrementPizzaCount() {
+                pizzaCount++;
+                console.log('Pizza count:', pizzaCount);
+            }
+
+            function incrementBombaCount() {
+                bombaCount++;
+                console.log('Bomba count:', bombaCount);
+            }
+        </script>
+    </table>
 </body>
 </html>
