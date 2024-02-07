@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conversione voto in trentesimi</title>
+</head>
+<body>
+  <label for="voti">Inserisci i 5 voti in decimi separati da virgole:</label>
+  <input type="text" id="voti">
+  <button onclick="convertiVoti()">Converti</button>
+  <p id="result"></p>
+
+  <script>
+    function convertiVoti() {
+      var voti = document.getElementById('voti').value;
+      var votiArray = voti.split(",").map(Number);
+      var votiTrentesimi = votiArray.map(function(voto) {
+        return voto * 30/100;
+      });
+      document.getElementById('result').innerHTML = "Voti in trentesimi: " + votiTrentesimi.join(", ");
+    }
+
+    function minimo() {
+      var voti = document.getElementById('voti').value;
+      var votiArray = voti.split(",").map(Number);
+      return Math.min(...votiArray);
+    }
+  </script>
+</body>
+</html>
