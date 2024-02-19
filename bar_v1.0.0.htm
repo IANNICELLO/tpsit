@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Chatbot</h1>
+        <button id="btn1" class="btn">Istruzioni</button>
+        <button id="btn2" class="btn">Menu drink</button>
+        <button id="btn3" class="btn">Ordini</button>
+        <div id="output" class="output"></div>
+    </div>
+    <script>
+        const btn1 = document.getElementById('btn1');
+        const btn2 = document.getElementById('btn2');
+        const btn3 = document.getElementById('btn3');
+        const output = document.getElementById('output');
+
+        const drinks = [
+            'Coca-Cola',
+            'Sprite',
+            'Fanta',
+            'Acqua',
+            'Caffè',
+            'Tè',
+            'Birra',
+            'Vino',
+            'Martini',
+            'Cocktail',
+        ];
+
+        const orders = [];
+
+        btn1.addEventListener('click', () => {
+            output.textContent = 'Ciao! Sono un chatbot pronto per servire.';
+        });
+
+        btn2.addEventListener('click', () => {
+            output.innerHTML = '<ul>';
+            drinks.forEach(drink => {
+                output.innerHTML += `<li>${drink}</li>`;
+            });
+            output.innerHTML += '</ul>';
+        });
+
+        btn3.addEventListener('click', () => {
+            const drink = prompt('Scegli un drink tra quelli elencati:');
+            if (drink && drinks.includes(drink)) {
+                orders.push(drink);
+                output.textContent = 'Ordine effettuato con successo!';
+            } else {
+                output.textContent = 'Ordine non valido. Riprova.';
+            }
+        });
+    </script>
+</body>
+</html>
