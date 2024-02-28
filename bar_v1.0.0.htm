@@ -31,13 +31,19 @@
             border: 1px solid #ccc;
             border-radius: 5px;
         }
+        .sushi-img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Chatbot</h1>
         <button id="btn1" class="btn">Istruzioni</button>
-        <button id="btn2" class="btn">Menu drink</button>
+        <button id="btn2" class="btn">Menu sushi</button>
         <button id="btn3" class="btn">Ordini</button>
         <div id="output" class="output"></div>
     </div>
@@ -47,37 +53,37 @@
         const btn3 = document.getElementById('btn3');
         const output = document.getElementById('output');
 
-        const drinks = [
-            'Coca-Cola',
-            'Sprite',
-            'Fanta',
-            'Acqua',
-            'Caffè',
-            'Tè',
-            'Birra',
-            'Vino',
-            'Martini',
-            'Cocktail',
+        const sushiMenu = [
+            { name: 'nigiri', image: 'nigiri.jpg' },
+            { name: 'hosomaki', image: 'hosomaki.jpg' },
+            { name: 'california rolls', image: 'california_rolls.jpg' },
+            { name: 'tiger roll', image: 'tiger_roll.jpg' },
+            { name: 'onigiri', image: nigiri.jpg' },
+            { name: 'uramaki', image: 'uramaki.jpg' },
+            { name: 'gunkan', image: 'gunkan.jpg' },
+            { name: 'futomaki', image: 'futomaki.jpg' },
+            { name: 'sashimi', image: 'sashimi.jpg' },
+            { name: 'salsa di soia', image: 'salsa_di_soia.jpg' }
         ];
 
         const orders = [];
 
         btn1.addEventListener('click', () => {
-            output.textContent = 'CIAO. SONO UN'INTELLIGENZA ARTIFICIALE CHE PREPARERA' I DRINK CHE PIU' TI PIACCIONO;
+            output.textContent = 'CIAO. SONO UN INTELLIGENZA ARTIFICIALE CHE PREPARERA CIO CHE TI PIACCIONO';
         });
 
         btn2.addEventListener('click', () => {
             output.innerHTML = '<ul>';
-            drinks.forEach(drink => {
-                output.innerHTML += `<li>${drink}</li>`;
+            sushiMenu.forEach(sushi => {
+                output.innerHTML += `<li><img src="${sushi.image}" alt="${sushi.name}" class="sushi-img">${sushi.name}</li>`;
             });
             output.innerHTML += '</ul>';
         });
 
         btn3.addEventListener('click', () => {
-            const drink = prompt('Scegli un drink tra quelli elencati:');
-            if (drink && drinks.includes(drink)) {
-                orders.push(drink);
+            const sushiToOrder = prompt('Scegli cosa ordinare tra gli elementi nel menù:');
+            if (sushiToOrder && sushiMenu.some(item => item.name === sushiToOrder)) {
+                orders.push(sushiToOrder);
                 output.textContent = 'Ordine effettuato con successo!';
             } else {
                 output.textContent = 'Ordine non valido. Riprova.';
