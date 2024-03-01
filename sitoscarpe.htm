@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personalizza la tua scarpa</title>
+    <style>
+        body {
+            background-color: #FFA500;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        h2, h5, label, select, input[type="text"] {
+            color: black;
+        }
+        h2, h5 {
+            text-align: center;
+        }
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        label, select, input[type="text"], input[type="submit"], input[type="button"] {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            background-color: white;
+            color: solid black;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input[type="submit"], input[type="button"] {
+            background-color: #FFA500;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: #FF6300;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Personalizza la tua scarpa</h2>
+<h5>Potrai personalizzare la tua scarpa che sarà unica solo per te</h5>
+
+<form action="/submit_form" method="post" target="_blank">
+
+    <label for="tomaia">Modello:</label><br>
+    <select id="tomaia" name="tomaia">
+        <option value="">--Seleziona qui sotto il modello--</option>
+        <option value="jordan_1_high">Jordan 1 high</option>
+        <option value="jordan_1_low">Jordan 1 low</option>
+        <option value="jordan_3">jordan 3</option>
+        <option value="jordan_4">Jordan 4</option>
+        <option value="air_force_1">Air force 1 </option>
+        <option value="blazer_low">Blazer low</option>
+        <option value="blazer_high">Blazer high</option>
+    </select><br><br>
+
+    <label for="numero">Numero:</label><br>
+    <select id="numero" name="numero">
+        <option value="">--Seleziona qui sotto il tuo numero--</option>
+        <option value="7.0">7.0</option>
+        <option value="7.5">7.5</option>
+        <option value="8.0">8.0</option>
+        <option value="8.5">8.5</option>
+        <option value="9.0">9.0</option>
+        <option value="9.5">9.5</option>
+        <option value="10.0">10.0</option>
+        <option value="10.5">10.5</option>
+    </select><br><br>
+
+    <label for="tomaia">Tomaia:</label><br>
+    <select id="tomaia" name="tomaia">
+        <option value="">--Seleziona qui sotto la tomaia--</option>
+<option value="originale">originale</option>
+<option value="pelle\_lucida">pelle lucida</option>
+<option value="denim">denim</option>
+<option value="pelle\_scamosciata">pelle scamosciata</option>
+<option value="pelle\_sintetica">pelle sintetica</option>
+<option value="microfibra">microfibra</option>
+</select><br><br>
+
+<label for="tomaia">Colore tomaia:</label><br>
+<select id="colore\_tomaia" name="colore\_tomaia">
+<option value="">--Seleziona qui sotto il colore della tomaia--</option>
+<option value="arancione">Arancione</option>
+<option value="azzurro">azzurro</option>
+<option value="blu">blu</option>
+<option value="fucsia">fucsia</option>
+<option value="giallo">giallo</option>
+<option value="grigio">grigio</option>
+<option value="marrone">marrone</option>
+<option value="nero">nero</option>
+<option value="rosa">rosa</option>
+<option value="rosso">rosso</option>
+<option value="verde">verde</option>
+</select><br><br>
+
+<label for="personalizzazione">inserisci qui sotto una frase o una parola da mettere come ricamo :</label><br>
+<input type="text" id="personalizzazione" name="personalizzazione"><br><br>
+
+
+<input type="submit" value="FINE PERSONALIZZAZIONE">
+
+</form>
+
+</body></html>
