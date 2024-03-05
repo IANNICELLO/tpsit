@@ -1,94 +1,115 @@
-<!DOCTYPE html>
-<html lang="it">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .btn {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 5px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .output {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .sushi-img {
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Chatbot</h1>
-        <button id="btn1" class="btn">Istruzioni</button>
-        <button id="btn2" class="btn">Menu sushi</button>
-        <button id="btn3" class="btn">Ordini</button>
-        <div id="output" class="output"></div>
+<!doctype html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>Sushi</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   </head>
+
+   <body>
+
+   <nav class="navbar navbar-dark" style="background-color:rgb(0,140,50);">
+     <div class="container-fluid">
+         <a class="navbar-brand" href="#">
+         <img src="./images/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+         Sushi Rolls
+       </a>
+     </div>
+   </nav>
+
+   <div class="container my-5 text-center" style="max-width:800px;">
+
+      <h1 class="display-4">Sushi Rolls</h1>
+
+      <p class="lead">
+        Disponiamo di un assortimento vastissimo. Ecco le nostre proposte!
+      </p>
+   
+      <button type="button" class="btn btn-primary">Ordina</button>
+      <button type="button" class="btn btn-secondary">Contattaci</button>
+
+   </div>
+
+   <div class="container text-center" >
+
+    <div class="row">
+
+       <div class="col-sm my-2" >
+         <div class="card" style="width:18rem; background-color:rgb(220,250,220);">
+           <img src="./images/california.png" class="card-img-top" alt="...">
+           <div class="card-body">
+              <h5 class="card-title">California</h5>
+              <p class="card-text">Descrizione California Roll.</p>
+              <a href="#" class="btn btn-primary">Acquista</a>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-sm my-2">
+         <div class="card" style="width:18rem; background-color:rgb(220,250,220);">
+           <img src="./images/dragon.png" class="card-img-top" alt="...">
+           <div class="card-body">
+              <h5 class="card-title">Dragon</h5>
+              <p class="card-text">Descrizione Dragon Roll.</p>
+              <a href="#" class="btn btn-primary">Acquista</a>
+           </div>
+         </div>
+       </div>
+
+       <div class="col-sm my-2">
+         <div class="card" style="width:18rem; background-color:rgb(220,250,220);">
+           <img src="./images/dynamite.png" class="card-img-top" alt="...">
+           <div class="card-body">
+              <h5 class="card-title">Dynamite</h5>
+              <p class="card-text">Descrizione Dynamite Roll.</p>
+              <a href="#" class="btn btn-primary">Acquista</a>
+           </div>
+         </div>
+       </div>
+
     </div>
-    <script>
-        const btn1 = document.getElementById('btn1');
-        const btn2 = document.getElementById('btn2');
-        const btn3 = document.getElementById('btn3');
-        const output = document.getElementById('output');
 
-        const sushiMenu = [
-            { name: 'nigiri', image: 'nigiri.jpg' },
-            { name: 'hosomaki', image: 'hosomaki.jpg' },
-            { name: 'california rolls', image: 'california_rolls.jpg' },
-            { name: 'tiger roll', image: 'tiger_roll.jpg' },
-            { name: 'onigiri', image: 'onigiri.jpg' },
-            { name: 'uramaki', image: 'uramaki.jpg' },
-            { name: 'gunkan', image: 'gunkan.jpg' },
-            { name: 'futomaki', image: 'futomaki.jpg' },
-            { name: 'sashimi', image: 'sashimi.jpg' },
-            { name: 'salsa di soia', image: 'salsa_di_soia.jpg' }
-        ];
+    <div class="row">
 
-        const orders = [];
+       <div class="col-sm my-2">
+         <div class="card" style="width:18rem; background-color:rgb(220,250,220);">
+           <img src="./images/philadelphia.png" class="card-img-top" alt="...">
+           <div class="card-body">
+              <h5 class="card-title">Philadelphia</h5>
+              <p class="card-text">Descrizione Philadelphia Roll.</p>
+              <a href="#" class="btn btn-primary">Acquista</a>
+           </div>
+          </div>
+       </div>
 
-        btn1.addEventListener('click', () => {
-            output.textContent = 'CIAO. SONO UN INTELLIGENZA ARTIFICIALE CHE PREPARERA CIO CHE TI PIACCIONO';
-        });
+       <div class="col-sm my-2">
+         <div class="card" style="width:18rem; background-color:rgb(220,250,220);">
+           <img src="./images/rainbow.png" class="card-img-top" alt="...">
+           <div class="card-body">
+             <h5 class="card-title">Rainbow</h5>
+             <p class="card-text">Descrizione Rainbow Roll.</p>
+             <a href="#" class="btn btn-primary">Acquista</a>
+           </div>
+         </div>
+       </div>
 
-        btn2.addEventListener('click', () => {
-            output.innerHTML = '<ul>';
-            sushiMenu.forEach(sushi => {
-                output.innerHTML += `<li><img src="${sushi.image}" alt="${sushi.name}" class="sushi-img">${sushi.name}</li>`;
-            });
-            output.innerHTML += '</ul>';
-        });
+      <div class="col-sm my-2">
+         <div class="card" style="width:18rem; background-color:rgb(220,250,220);">
+           <img src="./images/shrimp.png" class="card-img-top" alt="...">
+           <div class="card-body">
+             <h5 class="card-title">Shrimp</h5>
+             <p class="card-text">Descrizione Shrimp Roll.</p>
+             <a href="#" class="btn btn-primary">Acquista</a>
+         </div>
+        </div>
+      </div>
+   
+    </div>
 
-        btn3.addEventListener('click', () => {
-            const sushiToOrder = prompt('Scegli cosa ordinare tra gli elementi nel menù:');
-            if (sushiToOrder && sushiMenu.some(item => item.name === sushiToOrder)) {
-                orders.push(sushiToOrder);
-                output.textContent = 'Ordine effettuato con successo!';
-            } else {
-                output.textContent = 'Ordine non valido. Riprova.';
-            }
-        });
-    </script>
-</body>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+  </body>
 </html>
