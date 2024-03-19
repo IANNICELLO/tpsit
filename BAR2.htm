@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrello degli Ordini</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <p id="carrello"></p>
+    <button id="bottone-add" onclick="aggiungiDrink()">Aggiungi drink</button>
+    <button id="bottone-remove" onclick="cancellaDrink()">Cancella drink</button>
+    <button id="bottone-count" onclick="contaDrink()">Conta drink</button>
+    <button id="bottone-order" onclick="ordinaDrink()">Ordina drink</button>
+
+    <p>Numero drink a menu : </p>
+    <p id="contaDrink"></p>
+
+    <script>
+       const drinks = ["coca", "spritz", "sprite", "fanta", "birra", "belvedere", "martini"];
+       let carrello = [];
+
+       // Stampa la lista dei drink disponibili
+       document.getElementById("demo").innerHTML = "Drinks: " + drinks.join(", ");
+
+       // Funzione per contare il numero di drink disponibili
+       function contaDrink() {
+           document.getElementById("contaDrink").innerHTML = "Numero di drink disponibili: " + drinks.length;
+       }
+
+       // Funzione per aggiungere un drink al carrello
+       function aggiungiDrink() {
+           let drink = prompt("Inserisci il tuo drink:");
+           if (drink) {
+               carrello.push(drink);
+               document.getElementById("carrello").innerHTML = "Carrello: " + carrello.join(", ");
+           }
+       }
+
+       // Funzione per cancellare l'ultimo drink dal carrello
+       function cancellaDrink() {
+           if (carrello.length > 0) {
+               let removedDrink = carrello.pop();
+               document.getElementById("carrello").innerHTML = "Carrello: " + carrello.join(", ");
+           } else {
+               alert("Il carrello è vuoto!");
+           }
+       }
+
+       // Funzione per ordinare i drink
+       function ordinaDrink() {
+           if (carrello.length > 0) {
+               let conferma = confirm("Confermi l'ordine dei drink nel carrello?");
+               if (conferma) {
+                   alert("Ordine confermato! Drink ordinati: " + carrello.join(", "));
+                   carrello = []; // Reset del carrello dopo l'ordine
+                   document.getElementById("carrello").innerHTML = "Carrello: " + carrello.join(", "); // Aggiornamento visuale del carrello
+               } else {
+                   alert("Ordine annullato.");
+               }
+           } else {
+               alert("Il carrello è vuoto. Aggiungi dei drink prima di ordinare.");
+           }
+       }
+    </script>
+
+</body>
+</html>
+
