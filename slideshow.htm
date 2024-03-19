@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slideshow e Testo Responsive</title>
+    <style>
+        /* Stile per la slideshow */
+        .slideshow {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: auto;
+            display: none;
+        }
+
+        /* Stile per il testo */
+        .column {
+            float: left;
+            width: 50%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Stile per colonne responsive */
+        @media screen and (max-width: 600px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow">
+        <img src="nissan.jpg" alt="Immagine nissan">
+        <img src="supra.jpg" alt="Immagine supra">
+        <img src="911.jpg" alt="Immagine 911">
+    </div>
+
+    <div class="column">
+        <h2>NISSAN SKYLINE</h2>
+        <p>La Nissan Skyline GT-R R34 è una leggendaria vettura, spesso soprannominata “Godzilla”. Ecco una breve descrizione di questa iconica auto:
+
+            Generazione e Evoluzione: La R34 è la quinta generazione della serie Skyline GT-R ed è stata prodotta dal 1999 al 2022. È considerata da molti l’ultima vera GT-R, risultato di un’evoluzione durata trent’anni dalla sua nascita negli anni '60 con la prima Skyline.
+            Caratteristiche Tecniche:
+            Motore: Monta un motore sei cilindri in linea RB26DETT da 2,6 litri biturbo. La potenza dichiarata era di 280 CV, ma in realtà raggiungeva i 340 CV con una coppia di 384 Nm.
+            Trasmissione: È stata l’ultima GT-R ad avere un cambio manuale.
+            Tecnologia: Disponeva di quattro ruote sterzanti e un sistema di controllo di trazione ATTESA-ETS evoluto.
+            Dimensioni: In controtendenza rispetto alla R33, la R34 era più corta di 7 cm.
+            Velocità: Accelerava da 0 a 100 km/h in soli 4,9 secondi e raggiungeva una velocità massima di 265 km/h.</p>
+    </div>
+
+    <div class="column">
+        <h2>TOYOTA SUPRA DEL 1993</h2>
+        <p>La Toyota Supra del 1993, parte della quarta generazione (A80), è un’icona automobilistica che ha lasciato un’impronta indelebile nella storia delle sportive giapponesi. Ecco una breve descrizione di questa leggendaria vettura:
+
+            Design e Aerodinamica: La carrozzeria rinnovata della Toyota Supra MK4 aveva un coefficiente aerodinamico di 0.31. Le linee sinuose e aggressive la rendevano immediatamente riconoscibile.
+            Motore: Montava un motore 6 cilindri in linea da 3.0 litri, naturalmente aspirato. Questo propulsore erogava 220 CV a 5800 giri/min e una coppia di 284 Nm a 4800 giri/min. La versione europea, inclusa l’Italia, presentava una variante mostruosa da 330 CV.
+            Tecnologia e Prestazioni:
+            Sospensione: La sospensione a doppio braccio oscillante e controllo elettronico garantiva una guida precisa e stabile.
+            Velocità: La Supra GT Turbo A da 270 CV era considerata l’auto giapponese più veloce dell’epoca.
+</p>
+    </div>
+
+    <div class="column">
+        <h2>PORSCHE 911 GT3 RS</h2>
+        <p>La Porsche 911 GT3 RS è una vettura sportiva ad alte prestazioni con un motore aspirato da 4,0 litri, aerodinamica avanzata e struttura leggera. Ecco alcuni punti salienti di questa iconica auto:
+
+            Motore: La 911 GT3 RS è spinta da un motore 6 cilindri in linea da 3.996 cm³, che eroga una potenza di 386 kW (525 CV) a 8.500 giri/min e una coppia massima di 465 Nm a 6.300 giri/min.
+            Prestazioni: Questa vettura accelera da 0 a 100 km/h in soli 3,2 secondi e raggiunge una velocità massima di 296 km/h.
+            Aerodinamica e Leggerezza: La 911 GT3 RS è dotata di un sistema di regolazione automatica del diffusore anteriore e dell’alettone posteriore, che ottimizza la velocità in curva. Inoltre, la struttura leggera è realizzata con componenti in polimero rinforzato con fibra di carbonio (CFRP).
+            In breve, la Porsche 911 GT3 RS è una vettura da sogno per gli appassionati di guida sportiva, con un mix perfetto di potenza, agilità e design accattivante. </p>
+    </div>
+</body>
+</html>
