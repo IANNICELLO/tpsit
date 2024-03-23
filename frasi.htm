@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frase Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .button:hover {
+            background-color: #f0f0f0;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            width: 100%;
+            height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button class="button" onclick="aggiungiSoggetto()">Aggiungi soggetto</button>
+        <button class="button" onclick="aggiungiVerbo()">Aggiungi verbo</button>
+        <button class="button" onclick="aggiungiComplemento()">Aggiungi complemento</button>
+        <button class="button" onclick="creaFrase()">Crea frase</button>
+        <button class="button" onclick="creaFraseCasuale()">Crea frase casuale</button>
+        <div class="output" id="output"></div>
+    </div>
+    <script>
+        let soggetti = [];
+        let verbi = [];
+        let complementi = [];
+
+        function aggiungiSoggetto() {
+            let soggetto = prompt("Inserisci il soggetto:");
+            if (soggetto) {
+                soggetti.push(soggetto);
+                visualizzaArray();
+            }
+        }
+
+        function aggiungiVerbo() {
+            let verbo = prompt("Inserisci il verbo:");
+            if (verbo) {
+                verbi.push(verbo);
+                visualizzaArray();
+            }
+        }
+
+        function aggiungiComplemento() {
+            let complemento = prompt("Inserisci il complemento:");
+            if (complemento) {
+                complementi.push(complemento);
+                visualizzaArray();
+            }
+        }
+
+        function creaFrase() {
+            if (soggetti.length > 0 && verbi.length > 0 && complementi.length > 0) {
+                let frase = soggetti[0] + " " + verbi[0] + " " + complementi[0];
+                document.getElementById("output").innerHTML += frase + "<br>";
+            } else {
+                alert("Devi inserire almeno un elemento in ogni array.");
+            }
+        }
+
+        function creaFraseCasuale() {
+            if (soggetti.length > 0 && verbi.length > 0 && complementi.length > 0) {
+                let indiceSoggetto = Math.floor(Math.random() * soggetti.length);
+                let indiceVerbo = Math.floor(Math.random() * verbi.length);
+                let indiceComplemento = Math.floor(Math.random() * complementi.length);
+                let frase = soggetti[indiceSoggetto] + " " + verbi[indiceVerbo] + " " + complementi[indiceComplemento];
+                document.getElementById("output").innerHTML += frase + "<br>";
+            } else {
+                alert("Devi inserire almeno un elemento in ogni array.");
+            }
+        }
+
+        function visualizzaArray() {
+            document.getElementById("output").innerHTML = "Soggetti: " + soggetti.join(", ") + "<br>" +
+                                                            "Verbi: " + verbi.join(", ") + "<br>" +
+                                                            "Complementi: " + complementi.join(", ");
+        }
+    </script>
+</body>
+</html>
