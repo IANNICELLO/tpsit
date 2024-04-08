@@ -100,27 +100,25 @@
     <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
   </footer>
 </div>
-<script>
-  let n = 100;
-  let arrayNumeri = [];
+  <script>
+    let n = 100;
+    let arrayNumeri = [];
 
-  function caricaArray(numeri) {
-    arrayNumeri = [];
-    for (let i = 1; i <= numeri; i++) {
-      arrayNumeri.push(i);
+    function caricaArray(numeri) {
+      arrayNumeri = [];
+      for (let i = 1; i <= numeri; i++) {
+        arrayNumeri.push(i);
+      }
+      // Converto l'array in una stringa separata da virgole
+      let numeriStringa = arrayNumeri.join(', ');
+
+      // Inserisco tutti i numeri in un unico box
+      let numeriHTML = '<div class="box">' + numeriStringa + '</div>';
+
+      // Aggiorno il contenuto HTML della sezione #out
+      document.getElementById("out").innerHTML = numeriHTML;
     }
-    // Converto l'array in una stringa separata da virgole
-    let numeriStringa = arrayNumeri.join(', ');
+  </script>
 
-    // Inserisco i numeri in box da 25 numeri per riga
-    let numeriHTML = '';
-    for (let i = 0; i < numeriStringa.length; i += 25) {
-      numeriHTML += '<div class="box">' + numeriStringa.slice(i, i + 25) + '</div>';
-    }
-
-    // Aggiorno il contenuto HTML della sezione #out
-    document.getElementById("out").innerHTML = numeriHTML;
-  }
-</script>
 </body>
 </html>
