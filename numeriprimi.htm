@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>PROGRAMMA CHE STAMPA I DIVISORI PRIMI DEI NUMERI DA 1 A 1000</h2>
+
+<button onclick="myFunction()">STAMPA I DIVISORI PRIMI</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var num, i, j, output = "";
+  for (num = 1; num <= 1000; num++) {
+    output += "I DIVISORI PRIMI DI " + num + " SONO : ";
+    for (i = 2; i <= num; i++) {
+      if (num % i == 0 && isPrime(i)) {
+        output += i + " ";
+      }
+    }
+    output += "<br>";
+  }
+  document.getElementById("demo").innerHTML = output;
+}
+
+function isPrime(num) {
+  for (var i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+  return num > 1;
+}
+</script>
+
+</body>
+</html>
