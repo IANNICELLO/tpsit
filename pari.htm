@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bootstrap Array Example</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mt-5">Even Numbers from 1 to 100</h1>
+        <button class="btn btn-primary mx-auto mt-5" onclick="printEvenNumbers()">Print Even Numbers</button>
+        <p class="mt-5 text-center lead" id="result"></p>
+    </div>
+
+    <script>
+        function printEvenNumbers() {
+            let result = [];
+            for(let i = 1; i <= 100; i++) {
+                if(i % 2 === 0) {
+                    result.push(i);
+                }
+            }
+            document.getElementById("result").innerHTML = result.join(" ");
+        }
+    </script>
+</body>
+</html>
