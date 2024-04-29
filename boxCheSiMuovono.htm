@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Div Positioning Exercise</title>
+	<style>
+		#blueDiv, #yellowDiv {
+			width: 100px;
+			height: 100px;
+			position: absolute;
+		}
+
+		#blueDiv {
+			background-color: blue;
+	}
+
+		#yellowDiv {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="blueDiv"></div>
+	<div id="yellowDiv"></div>
+	<script>
+		const blueDiv = document.getElementById("blueDiv");
+		const yellowDiv = document.getElementById("yellowDiv");
+
+		function randomPosition() {
+			return Math.floor(Math.random() * (window.innerWidth - 100));
+		}
+
+		function randomColor() {
+			const red = Math.floor(Math.random() * 256);
+			const green = Math.floor(Math.random() * 256);
+			const blue = Math.floor(Math.random() * 256);
+			return `rgb(${red}, ${green}, ${blue})`;
+		}
+
+		function moveDivElements() {
+			blueDiv.style.left = randomPosition() + "px";
+			blueDiv.style.top = randomPosition() + "px";
+			yellowDiv.style.left = randomPosition() + "px";
+			yellowDiv.style.top = randomPosition() + "px";
+		}
+
+		function checkOverlap() {
+			const blueLeft = blueDiv.offsetLeft;
+			const blueTop = blueDiv.offsetTop;
+			const yellowLeft = yellowDiv.offsetLeft;
+			const yellowTop = yellowDiv.offsetTop;
+
+			const overlap = (blueLeft < yellowLeft + 100 && blueLeft + 100 > yellowLeft) && (blueTop < yellowTop + 100 && blueTop + 100 > yellowTop);
+
+			if (overlap) {
+				blueDiv.style.backgroundColor = "red";
+				yellowDiv.style.backgroundColor = "red";
+			} else {
+				blueDiv.style.backgroundColor = "blue";
+				yellowDiv.style.backgroundColor = "yellow";
+			}
+		}
+
+		moveDivElements(); // Move div elements initially
+		setInterval(moveDivElements, 1000); // Move div elements every 2 seconds
+		setInterval(checkOverlap, 1000); // Check for overlap every second
+	</script>
+</body>
+</html>
