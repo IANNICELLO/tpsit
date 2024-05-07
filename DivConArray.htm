@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+       .quadrato {
+            height: 20px;
+            width: 20px;
+            border: 1px solid black;
+            margin:5px;
+            padding:5px;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        // define an array of colors
+        const colors = [
+            { category: 'even', color: 'rgb(245, 209, 215)' },
+            { category: 'odd', color: 'rgb(51, 152, 246)' },
+            { category: 'ultipleOf3', color: 'rgb(246, 152, 51)' },
+            { category: 'ultipleOf5', color: 'rgb(152, 246, 51)' },
+            { category: 'ultipleOf10', color: 'rgb(51, 246, 246)' }
+        ];
+
+        //realizzare 100 quadrati con i div con colori di sfondo blu e
+        // rosa con all'interno dei numeri casuali da 0 a 100
+        // se pari lo sfondo e rosa altrimenti blu
+        let nc;
+        for(let i=0;i<100;i++)
+        {
+            nc=Math.floor((Math.random()*100))
+            let color;
+            if (nc % 2 === 0) {
+                color = colors[0].color;
+            } else if (nc % 3 === 0) {
+                color = colors[2].color;
+            } else if (nc % 5 === 0) {
+                color = colors[3].color;
+            } else if (nc % 10 === 0) {
+                color = colors[4].color;
+            } else {
+                color = colors[1].color;
+            }
+            document.write("<div class='quadrato' style='background-color: " + color + ";'>"
+            +nc+
+            "</div>   ")
+        }
+    </script>
+</body>
+</html>
