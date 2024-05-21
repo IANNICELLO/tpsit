@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrice 8x8</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid black;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Matrice 8x8</h1>
+
+<table>
+    <tbody id="matrice"></tbody>
+</table>
+
+<p id="spiegazione">
+    <strong>Spiegazione:</strong><br>
+    1. Abbiamo creato una tabella HTML con 8 righe e 8 colonne.<br>
+    2. Successivamente, abbiamo riempito ogni cella della tabella con un numero casuale compreso tra 0 e 9, utilizzando JavaScript.<br>
+    3. Infine, abbiamo inserito la tabella nel corpo della pagina.
+</p>
+
+<script>
+    // Funzione per generare una matrice 8x8 con valori casuali tra 0 e 9
+    function generaMatrice() {
+        let matrice = [];
+        for (let i = 0; i < 8; i++) {
+            matrice[i] = [];
+            for (let j = 0; j < 8; j++) {
+                matrice[i][j] = Math.floor(Math.random() * 10);
+            }
+        }
+        return matrice;
+    }
+
+    // Funzione per creare la tabella HTML a partire dalla matrice
+    function creaTabella(matrice) {
+        let tbody = document.getElementById("matrice");
+        for (let i = 0; i < 8; i++) {
+            let row = document.createElement("tr");
+            for (let j = 0; j < 8; j++) {
+                let cell = document.createElement("td");
+                cell.textContent = matrice[i][j];
+                row.appendChild(cell);
+            }
+            tbody.appendChild(row);
+        }
+    }
+
+    // Funzione per stampare una matrice
+    function stampaMatrice(matrice) {
+        console.log("Matrice 8x8:");
+        for (let i = 0; i < 8; i++) {
+            console.log(matrice[i].join(" "));
+        }
+    }
+
+    // Funzione principale
+    function main() {
+        // Genera una nuova matrice
+        let matrice = generaMatrice();
+
+        // Crea la tabella HTML
+        creaTabella(matrice);
+
+        // Stampa la matrice
+        stampaMatrice(matrice);
+
+        // Spiega il codice
+        console.log("\nSpiegazione:");
+        console.log("1. Abbiamo creato una matrice vuota con 8 righe e 8 colonne.");
+        console.log("2. Successivamente, abbiamo riempito ogni elemento della matrice con un numero casuale compreso tra 0 e 9, utilizzando un doppio ciclo for.");
+        console.log("3. Infine, abbiamo stampato la matrice utilizzando un altro ciclo for, separando gli elementi di ogni riga con uno spazio.");
+    }
+
+    // Eseguiamo la funzione principale al caricamento della pagina
+    window.onload = main;
+</script>
+
+</body>
+</html>
