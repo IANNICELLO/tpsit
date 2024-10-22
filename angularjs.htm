@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="it" ng-app="imageApp">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabella Immagini e Didascalie con AngularJS</title>
+    <title>Tabella Immagini e Didascalie</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -17,68 +17,67 @@
             border: 1px solid #ccc;
             padding: 10px;
             text-align: center;
+            vertical-align: top; /* Allinea il contenuto in alto */
         }
         img {
-            max-width: 100px;
-            height: auto;
-            margin-right: 10px;
+            max-width: 100px; /* Limita la dimensione dell'immagine */
+            height: auto; /* Mantiene le proporzioni */
+            margin-right: 10px; /* Spazio tra l'immagine e la didascalia */
         }
     </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script>
-        // Definizione dell'applicazione AngularJS
-        var app = angular.module('imageApp', []);
-
-        // Controller per gestire i dati delle immagini
-        app.controller('ImageController', function($scope) {
-            $scope.images = [
-                [
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 1' },
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 2' }
-                ],
-                [
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 3' },
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 4' }
-                ],
-                [
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 5' },
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 6' }
-                ],
-                [
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 7' },
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 8' }
-                ],
-                [
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 9' },
-                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 10' }
-                ]
-            ];
-        });
-
-        // Direttiva personalizzata per mostrare immagine e didascalia
-        app.directive('imageCaption', function() {
-            return {
-                restrict: 'E',
-                scope: {
-                    image: '=' // Passa l'immagine al template
-                },
-                template: `
-                    <div>
-                        <img ng-src="{{image.src}}" alt="{{image.caption}}">
-                        <p>{{image.caption}}</p>
-                    </div>
-                `
-            };
-        });
-    </script>
 </head>
-<body ng-controller="ImageController">
+<body>
 
-    <h1>Tabella di Immagini e Didascalie</h1>
+    <h1>galeria di opere d'arte</h1>
     <table>
-        <tr ng-repeat="row in images">
-            <td ng-repeat="image in row">
-                <image-caption image="image"></image-caption>
+        <tr>
+            <td>
+                <img src="ellie.jpg" alt="Immagine 1">
+                <p>Didascalia 1</p>
+            </td>
+            <td>
+                <img src="dina.jpg" alt="Immagine 2">
+                <p>Didascalia 2</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="joel.jpg" alt="Immagine 3">
+                <p>Didascalia 3</p>
+            </td>
+            <td>
+                <img src="abby.jpg" alt="Immagine 4">
+                <p>Didascalia 4</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="marline.jpg" alt="Immagine 5">
+                <p>Didascalia 5</p>
+            </td>
+            <td>
+                <img src="nora.jpg" alt="Immagine 6">
+                <p>Didascalia 6</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="tess.jpg" alt="Immagine 7">
+                <p>Didascalia 7</p>
+            </td>
+            <td>
+                <img src="clicker.jpg" alt="Immagine 8">
+                <p>Didascalia 8</p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="runner.jpg" alt="Immagine 9">
+                <p>Didascalia 9</p>
+            </td>
+            <td>
+                <img src="tommy.jpg" alt="Immagine 10">
+                <p>Didascalia 10</p>
             </td>
         </tr>
     </table>
