@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="it" ng-app="imageApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabella Immagini e Didascalie con AngularJS</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script>
+        // Definizione dell'applicazione AngularJS
+        var app = angular.module('imageApp', []);
+
+        // Controller per gestire i dati delle immagini
+        app.controller('ImageController', function($scope) {
+            $scope.images = [
+                [
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 1' },
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 2' }
+                ],
+                [
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 3' },
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 4' }
+                ],
+                [
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 5' },
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 6' }
+                ],
+                [
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 7' },
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 8' }
+                ],
+                [
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 9' },
+                    { src: 'https://via.placeholder.com/100', caption: 'Didascalia 10' }
+                ]
+            ];
+        });
+
+        // Direttiva personalizzata per mostrare immagine e didascalia
+        app.directive('imageCaption', function() {
+            return {
+                restrict: 'E',
+                scope: {
+                    image: '=' // Passa l'immagine al template
+                },
+                template: `
+                    <div>
+                        <img ng-src="{{image.src}}" alt="{{image.caption}}">
+                        <p>{{image.caption}}</p>
+                    </div>
+                `
+            };
+        });
+    </script>
+</head>
+<body ng-controller="ImageController">
+
+    <h1>Tabella di Immagini e Didascalie</h1>
+    <table>
+        <tr ng-repeat="row in images">
+            <td ng-repeat="image in row">
+                <image-caption image="image"></image-caption>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
