@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="it" ng-app="targaApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestione Targhe Italiane</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .valida {
+            color: green;
+        }
+        .non-valida {
+            color: red;
+        }
+    </style>
+</head>
+<body ng-controller="TargaController">
+
+    <h1>Inserisci Targa Italiana</h1>
+    <input type="text" ng-model="nuovaTarga" placeholder="Inserisci la targa" />
+    <button ng-click="aggiungiTarga()">Aggiungi Targa</button>
+
+    <h2>Targhe Inserite</h2>
+    <table border="1">
+        <tr>
+            <th>Targa</th>
+            <th>Stato</th>
+        </tr>
+        <tr ng-repeat="targa in targhe">
+            <td ng-class="{'valida': isValid(targa), 'non-valida': !isValid(targa)}">{{ targa }}</td>
+            <td>{{ isValid(targa) ? 'Valida' : 'Non Valida' }}</td>
+        </tr>
+    </table>
+
+    <script>
+        var app = angular.module('targaApp', []);
+        
+        app.controller('TargaController', function($scope) {
+            $scope.targhe = [];
+            $scope.nuovaTarga = '';
+
+            $scope.aggiungiTarga = function() {
+                if ($scope.nuovaTarga) {
+                    $scope.targhe.push($scope.nuovaTarga);
+                    $scope.nuovaTarga = '';
+                }
+            };
+
+            $scope.isValid = function(targa) {
+                // RegEx per validare le targhe italiane
+                var regex = /^[A-Z]{2}[0-9]{3}[A-Z]{2}$/;
+                return regex.test(targa);
+            };
+        });
+    </script>
+
+</body>
+</html>
