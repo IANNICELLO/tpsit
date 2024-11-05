@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabelline da 1 a 10</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 25%;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+
+    .pari {
+      background-color: rgb(25, 25, 177);
+      color: white;
+    }
+
+    .dispari {
+      background-color: rgb(202, 22, 22);
+      color: white;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+<body ng-app="tabellineApp">
+
+  <div ng-controller="TabellineController">
+    <h1>Tabelline da 1 a 10</h1>
+    <table>
+      <tbody>
+        <tr ng-repeat="y in tabelline">
+          <td ng-repeat="x in tabelline" ng-class="{'pari': (x * y) % 2 === 0, 'dispari': (x * y) % 2 !== 0}">
+            {{x * y}}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    var app = angular.module('tabellineApp', []);
+
+    app.controller('TabellineController', function($scope) {
+      // Definiamo i numeri per le tabelline da 1 a 10
+      $scope.tabelline = [];
+      
+      for (var i = 1; i <= 10; i++) {
+        $scope.tabelline.push(i);
+      }
+    });
+  </script>
+
+</body>
+</html>
