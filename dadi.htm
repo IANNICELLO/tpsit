@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Fabio Iannicelli">
+    <meta name="description" content="Un gioco di lancio di due dadi che simula 100 lanci e visualizza un istogramma dei risultati ottenuti.">
+    <meta name="keywords" content="lancio dadi, gioco dadi, istogramma, probabilità, simulazione dadi, statistiche dadi">
+    <meta name="generator" content="Visual Studio Code">
+    <title>Lancio di Due Dadi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(145deg, #6dbf88, #4caf50);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        canvas {
+            margin-top: 30px;
+            border-radius: 15px;
+            border: 2px solid #e0e0e0;
+            background: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lancio di Due Dadi</h1>
+    <p>Un gioco che simula 100 lanci di due dadi e mostra un istogramma dei risultati ottenuti. Clicca il pulsante per iniziare.</p>
+    <button onclick="lanciaDadi()">Lancia i Dadi</button>
+    
+    <canvas id="istogramma" width="600" height="400"></canvas>
+
+    <script>
+        function lanciaDadi() {
+            const risultati = Array(11).fill(0);
+
+            for (let i = 0; i < 100; i++) {
+                const dado1 = Math.floor(Math.random() * 6) + 1;
+                const dado2 = Math.floor(Math.random() * 6) + 1;
+                const somma = dado1 + dado2;
+                risultati[somma - 2]++;
+            }
+
+            mostraIstogramma(risultati);
+        }
+
+        function mostraIstogramma(risultati) {
+    const canvas = document.getElementById('istogramma');
+    const ctx = canvas.getContext('2d');
+    const maxRisultato = Math.max(...risultati);
+    const larghezzaBarra = 50;
+    const distanzaTraBarre = 20;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < risultati.length; i++) {
+        const altezzaBarra = (risultati[i] / maxRisultato) * (canvas.height - 20);
+        
+        if (i + 2 >= 10) {
+            ctx.fillStyle = '#ff5733'; // Colore arancione per 10, 11 e 12
+        } else {
+            ctx.fillStyle = '#007bff'; // Colore blu per gli altri
+        }
+
+        // Aggiustamento nella posizione delle barre per includere correttamente i numeri più alti
+        ctx.fillRect(i * (larghezzaBarra + distanzaTraBarre) + 60, canvas.height - altezzaBarra - 10, larghezzaBarra, altezzaBarra);
+        ctx.fillStyle = '#333';
+        ctx.fillText(i + 2, i * (larghezzaBarra + distanzaTraBarre) + 70, canvas.height - 5);
+    }
+}
+    </script>
+
+</body>
+</html>
