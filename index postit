@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Digital Coffee</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Digital Coffee</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <% if (user) { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Ciao, <%= user %>!</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Logout</a>
+                    </li>
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/signup">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                <% } %>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <h1>Benvenuto su Digital Coffee!</h1>
+
+    <form method="POST" action="/post" class="mb-3">
+        <textarea class="form-control" name="content" rows="3" placeholder="Scrivi un post..."></textarea>
+        <button type="submit" class="btn-primary mt-2">Pubblica</button>
+    </form>
+
+    <h2>I tuoi post</h2>
+    <div id="post-container">
+        <% posts.forEach(post => { %>
+            <div class="card">
+                <p><strong><%= post.username %></strong> <small><%= new Date(post.date).toLocaleString() %></small></p>
+                <p><%= post.content %></p>
+                <button class="like-btn" data-id="<%= post.id %>">
+                    ❤️ <span class="like-count"><%= post.likes %></span>
+                </button>
+            </div>
+        <% }) %>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 Digital Coffee</p>
+</footer>
+
+<script>
+    const socket = io();
+    const likeButtons = document.querySelectorAll('.like-btn');
+
+    likeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const postId = btn.getAttribute('data-id');
+            socket.emit('like', postId);
+        });
+    });
+
+    socket.on('likeUpdate', ({ postId, likes }) => {
+        const btn = document.querySelector(`.like-btn[data-id="${postId}"]`);
+        if (btn) {
+            btn.querySelector('.like-count').innerText = likes;
+
+            const heart = document.createElement('span');
+            heart.classList.add('floating-heart');
+            heart.innerText = '❤️';
+            btn.appendChild(heart);
+            setTimeout(() => heart.remove(), 1000);
+        }
+    });
+</script>
+
+</body>
+</html>
