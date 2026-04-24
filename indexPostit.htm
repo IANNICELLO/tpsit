@@ -2,88 +2,75 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Digital Coffee</title>
-    <link rel="stylesheet" href="cssPostit.css">
+    <title>Digital Coffee</title>
+    <link rel="stylesheet" href="/css/styles.css">
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Digital Coffee</a>
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav ms-auto">
-                <% if (user) { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Ciao, <%= user %>!</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout">Logout</a>
-                    </li>
-                <% } else { %>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/signup">Sign Up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/login">Login</a>
-                    </li>
-                <% } %>
-            </ul>
-        </div>
+<nav class="navbar">
+    <a class="navbar-brand" href="/">Digital Coffee</a>
+    <div>
+        <% if (user) { %>
+            <a class="nav-link" href="/my-likes">I miei Like ❤️</a>
+            <span class="nav-link" style="color: var(--accent);">@<%= user %></span>
+            <a class="nav-link" href="/logout">Logout</a>
+        <% } else { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/signup">Sign Up</a>
+        <% } %>
     </div>
 </nav>
 
-<div class="container mt-5">
-    <h1>Benvenuto su Digital Coffee!</h1>
+<div class="container">
+    <% if (locals.title) { %>
+        <a href="/" class="back-link">← Torna alla bacheca principale</a>
+        <h1><%= title %></h1>
+    <% } else { %>
+        <h1>Bacheca Digitale</h1>
+        <% if (user) { %>
+            <form method="POST" action="/post" class="card" style="background: var(--glass);">
+                <textarea name="content" class="form-control" placeholder="A cosa stai pensando?" required style="min-height:100px; resize:none;"></textarea>
+                <button type="submit" class="btn-primary">Pubblica</button>
+            </form>
+        <% } %>
+    <% } %>
 
-    <form method="POST" action="/post" class="mb-3">
-        <textarea class="form-control" name="content" rows="3" placeholder="Scrivi un post..."></textarea>
-        <button type="submit" class="btn-primary mt-2">Pubblica</button>
-    </form>
-
-    <h2>I tuoi post</h2>
     <div id="post-container">
         <% posts.forEach(post => { %>
             <div class="card">
-                <p><strong><%= post.username %></strong> <small><%= new Date(post.date).toLocaleString() %></small></p>
-                <p><%= post.content %></p>
-                <button class="like-btn" data-id="<%= post.id %>">
-                    ❤️ <span class="like-count"><%= post.likes %></span>
-                </button>
+                <small style="color: var(--accent);">Post di <b><%= post.username %></b></small>
+                <a href="/post/<%= post.id %>" style="text-decoration:none; color:inherit;">
+                    <p class="post-text"><%= post.content %></p>
+                </a>
+                <div class="card-footer">
+                    <button class="like-btn <%= (user && post.likedBy.includes(user)) ? 'active' : '' %>" data-id="<%= post.id %>">
+                        ❤️ <span class="like-count"><%= post.likes %></span>
+                    </button>
+                    <a href="/post/<%= post.id %>" class="comment-counter">
+                        💬 Discussione (<%= post.comments ? post.comments.length : 0 %>)
+                    </a>
+                </div>
             </div>
         <% }) %>
     </div>
 </div>
 
-<footer>
-    <p>&copy; 2025 Digital Coffee</p>
-</footer>
-
 <script>
     const socket = io();
-    const likeButtons = document.querySelectorAll('.like-btn');
-
-    likeButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const postId = btn.getAttribute('data-id');
-            socket.emit('like', postId);
-        });
+    const user = "<%= user %>";
+    document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.onclick = () => {
+            if(!user) return window.location.href = '/login';
+            socket.emit('like', { postId: btn.dataset.id, username: user });
+        }
     });
-
-    socket.on('likeUpdate', ({ postId, likes }) => {
+    socket.on('likeUpdate', ({ postId, likes, likedBy }) => {
         const btn = document.querySelector(`.like-btn[data-id="${postId}"]`);
         if (btn) {
             btn.querySelector('.like-count').innerText = likes;
-
-            const heart = document.createElement('span');
-            heart.classList.add('floating-heart');
-            heart.innerText = '❤️';
-            btn.appendChild(heart);
-            setTimeout(() => heart.remove(), 1000);
+            user && likedBy.includes(user) ? btn.classList.add('active') : btn.classList.remove('active');
         }
     });
 </script>
-
 </body>
 </html>
