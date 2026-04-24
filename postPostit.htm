@@ -1,28 +1,59 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8">
-<title>Chat</title>
-<link href="cssPostit.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Chat - PostIT</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
+<body>
+<div class="container">
+    <a href="/" class="back-link">← Torna alla bacheca</a>
+    
+    <div class="card" style="border-left: 5px solid var(--accent);">
+        <small>Discussione avviata da <b><%= post.username %></b></small>
+        <p class="post-text"><%= post.content %></p>
+    </div>
 
-<body class="bg-dark text-light">
-<div class="container mt-4">
+    <div id="messages" style="height: 350px; overflow-y: auto; background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; margin-bottom: 20px; border: 1px solid var(--glass);">
+        <% if (post.comments) { %>
+            <% post.comments.forEach(c => { %>
+                <div style="margin-bottom: 10px;">
+                    <b style="color: var(--accent);"><%= c.username %>:</b> <span><%= c.message %></span>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
 
-<a href="/" class="btn btn-outline-light mb-3">← Indietro</a>
-
-<h4><%= post.content %></h4>
-
-<div id="messages" class="border p-2 mb-2" style="height:300px; overflow-y:auto;"></div>
-<input id="messageInput" class="form-control" placeholder="Scrivi un messaggio...">
-
+    <% if (user) { %>
+        <div style="display:flex; gap: 10px;">
+            <input id="msgInput" class="form-control" style="margin-bottom:0;" placeholder="Scrivi un commento...">
+            <button id="sendBtn" class="btn-primary">Invia</button>
+        </div>
+    <% } %>
 </div>
 
-<script src="/socket.io/socket.io.js"></script>
 <script>
-const POST_ID = "<%= post.id %>"
-const USERNAME = "<%= user %>"
+    const socket = io();
+    const postId = "<%= post.id %>";
+    const user = "<%= user %>";
+    socket.emit('join-post', { postId });
+
+    const btn = document.getElementById('sendBtn');
+    const input = document.getElementById('msgInput');
+    const box = document.getElementById('messages');
+
+    function send() {
+        if (input.value) {
+            socket.emit('chat-message', { postId, username: user, message: input.value });
+            input.value = '';
+        }
+    }
+    if(btn) btn.onclick = send;
+    socket.on('chat-message', d => {
+        box.innerHTML += `<div><b style="color: var(--accent);">${d.username}:</b> ${d.message}</div>`;
+        box.scrollTop = box.scrollHeight;
+    });
 </script>
-<script src="/js/chat.js"></script>
 </body>
 </html>
