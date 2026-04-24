@@ -3,10 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>Digital Coffee - UI Mock</title>
-    <link rel="stylesheet" href="/css/styles.css">
 
-    <!-- SOLO MOCK: non serve backend -->
+    <!-- FONT -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --bg-dark: #0f0c29;
+            --card-bg: #1a1a2e;
+            --accent: #b366ff;
+            --accent-hover: #9933ff;
+            --text-primary: #e0e0e0;
+            --text-secondary: #a0a0a0;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background: rgba(26, 26, 46, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass);
+            padding: 15px 30px;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            color: var(--accent);
+            font-size: 1.6rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* GRID MOCK */
         .mock-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -23,15 +91,136 @@
             .split { grid-template-columns: 1fr; }
         }
 
+        /* CARD */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--glass);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* POST */
+        .post-text {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: #fff;
+        }
+
+        /* FOOTER */
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid var(--glass);
+        }
+
+        /* BUTTON */
+        .btn-primary {
+            background: linear-gradient(45deg, var(--accent), #7a00ff);
+            color: white;
+            border: none;
+
+            padding: 12px 25px;
+            border-radius: 10px;
+
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* LIKE */
+        .like-btn {
+            background: var(--glass);
+            border: 1px solid var(--glass);
+            color: white;
+
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .like-btn.active {
+            background: rgba(179, 102, 255, 0.2);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* COMMENT */
+        .comment-counter {
+            font-size: 0.95rem;
+            font-weight: 600;
+
+            color: var(--text-primary);
+            text-decoration: none;
+
+            background: var(--glass);
+            padding: 10px 18px;
+            border-radius: 10px;
+
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .comment-counter:hover {
+            background: rgba(179, 102, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* INPUT */
+        .form-control {
+            width: 100%;
+            background: #16213e;
+            border: 1px solid var(--glass);
+
+            border-radius: 10px;
+            color: white;
+
+            padding: 12px;
+            margin-bottom: 15px;
+
+            outline: none;
+        }
+
         .fake-input {
             width: 100%;
             padding: 12px;
+
             border-radius: 10px;
             border: 1px solid var(--glass);
+
             background: #16213e;
             color: white;
+
             margin-bottom: 10px;
         }
+
+        /* BACKGROUND CHAT BOX */
+        .chat-box {
+            height: 200px;
+            overflow-y: auto;
+
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+
+            border-radius: 10px;
+        }
+
+        /* TEXT COLORS */
+        .accent {
+            color: var(--accent);
+        }
+
     </style>
 </head>
 
@@ -54,7 +243,7 @@
         <h2>Bacheca Digitale (Mock Feed)</h2>
 
         <div class="card" style="background: var(--glass); margin-top:15px;">
-            <small style="color: var(--accent);">Post di <b>Alice</b></small>
+            <small class="accent">Post di <b>Alice</b></small>
             <p class="post-text">Questo è un post di esempio nella bacheca digitale.</p>
             <div class="card-footer">
                 <button class="like-btn active">❤️ 12</button>
@@ -63,7 +252,7 @@
         </div>
 
         <div class="card" style="background: var(--glass);">
-            <small style="color: var(--accent);">Post di <b>Marco</b></small>
+            <small class="accent">Post di <b>Marco</b></small>
             <p class="post-text">UI finta per mostrare il design del social.</p>
             <div class="card-footer">
                 <button class="like-btn">❤️ 5</button>
@@ -80,38 +269,30 @@
     <!-- LOGIN + SIGNUP -->
     <div class="split">
 
-        <!-- LOGIN -->
         <div class="card">
-            <h2 style="color: var(--accent);">Login</h2>
+            <h2 class="accent">Login</h2>
             <input class="form-control" placeholder="Username">
             <input class="form-control" placeholder="Password">
             <button class="btn-primary" style="width:100%;">Entra</button>
-            <p style="margin-top:10px; color: var(--text-secondary); font-size: 0.9rem;">
-                Non hai un account? Registrati
-            </p>
         </div>
 
-        <!-- SIGNUP -->
         <div class="card">
-            <h2 style="color: var(--accent);">Sign Up</h2>
+            <h2 class="accent">Sign Up</h2>
             <input class="form-control" placeholder="Username">
             <input class="form-control" placeholder="Password">
             <button class="btn-primary" style="width:100%;">Crea Account</button>
-            <p style="margin-top:10px; color: var(--text-secondary); font-size: 0.9rem;">
-                Hai già un account? Login
-            </p>
         </div>
 
     </div>
 
-    <!-- CHAT MOCK -->
+    <!-- CHAT -->
     <div class="card">
-        <h2 style="color: var(--accent);">Chat / Discussione</h2>
+        <h2 class="accent">Chat / Discussione</h2>
 
-        <div style="height: 200px; overflow-y:auto; background: rgba(0,0,0,0.2); padding:15px; border-radius:10px;">
-            <p><b style="color: var(--accent);">Alice:</b> Bello questo design!</p>
-            <p><b style="color: var(--accent);">Marco:</b> Sì, molto moderno 🔥</p>
-            <p><b style="color: var(--accent);">User:</b> Funziona solo come UI mock</p>
+        <div class="chat-box">
+            <p><b class="accent">Alice:</b> Bello questo design!</p>
+            <p><b class="accent">Marco:</b> Sì, molto moderno 🔥</p>
+            <p><b class="accent">User:</b> Funziona solo come UI mock</p>
         </div>
 
         <div style="display:flex; gap:10px; margin-top:10px;">
