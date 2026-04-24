@@ -2,18 +2,20 @@
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Digital Coffee</title>
-    <link rel="stylesheet" href="cssPostit.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <div class="auth-container">
-        <form action="/login" method="POST" class="auth-card">
-            <h2>Login</h2>
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button type="submit" class="btn-auth">Login</button>
-            <p>Non hai un account? <a href="/signup">Sign Up</a></p>
+    <div class="auth-wrapper">
+        <form action="/login" method="POST" class="card auth-card">
+            <h2>Accedi</h2>
+            <input type="text" name="username" class="form-control" placeholder="Username" required>
+            <input type="password" name="password" class="form-control" placeholder="Password" required>
+            <button type="submit" class="btn-primary">Entra</button>
+            <p>Non hai un account? <a href="/signup">Registrati</a></p>
+            <div style="margin-top: 15px;">
+                <a href="/" class="back-link" style="font-size: 0.8rem;">← Torna alla bacheca</a>
+            </div>
         </form>
     </div>
 </body>
